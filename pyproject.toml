@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "acunetix-mcp-server"
+version = "0.1.0"
+description = "Production-oriented MCP server for the Acunetix Scanner API"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+  { name = "Coiffeur" }
+]
+dependencies = [
+  "httpx>=0.27.0,<1.0.0",
+  "jsonschema>=4.23.0,<5.0.0",
+]
+
+[project.scripts]
+acunetix-mcp-server = "acunetix_mcp.__main__:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

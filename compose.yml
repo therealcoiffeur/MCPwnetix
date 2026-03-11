@@ -1,0 +1,26 @@
+services:
+  acunetix-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: acunetix-mcp-server:latest
+    container_name: acunetix-mcp-server
+    hostname: acunetix-mcp-server
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${ACUNETIX_MCP_PORT:-3000}:${ACUNETIX_MCP_PORT:-3000}"
+    init: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      dreamland:
+        aliases:
+          - acunetix-mcp-server
+          - acunetix-mcp
+
+networks:
+  dreamland:
+    name: dreamland
+    driver: bridge
